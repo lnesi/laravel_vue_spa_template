@@ -16,11 +16,10 @@ class AuthenticateActiveUser
     public function handle($request, Closure $next,$guard=null)
     {
         if($request->user()->active){
-            
+            return $next($request);
         }else{
             Auth::guard($guard)->logout();
             return response(view("auth.inactive_user"),401);
-            
         }
         
     }
