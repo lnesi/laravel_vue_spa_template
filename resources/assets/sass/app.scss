@@ -1,0 +1,26 @@
+
+// Fonts
+@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
+
+// Variables
+@import "variables";
+
+// Bootstrap
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+
+.contentHolder{
+    padding-top: 20px;
+    margin-top: 50px;
+    overflow-y: auto;
+    height: 100%;
+    box-sizing:content-box;
+}
+
+.alert{
+	position: absolute;
+    z-index: 10;
+    width: 100%;
+    opacity: 0.75;
+    margin-top: 75px;
+}
