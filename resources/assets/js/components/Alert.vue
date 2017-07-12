@@ -110,13 +110,13 @@
                         return "fa fa-fw fa-check";
                         break;
                     case "danger":
-                        return "fa fa-fw fa-exclamation-triangle";
+                        return "fa fa-fw fa-times";
                         break;
                     case "warning":
-                        return "fa fa-fw fa-exclamation-circle";
+                        return "fa fa-fw fa-exclamation-triangle";
                         break;
                     default:
-                        return "fa fa-fw fa-exclamation";
+                        return "fa fa-fw fa-exclamation-circle";
                         break;
                 }
             }

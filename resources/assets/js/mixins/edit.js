@@ -1,31 +1,31 @@
 export default {
-	mounted(){
-		
-		this.provider = this.$resource(this.resource_url);		
-		this.load(this.$route.params.id);
-	},
+  data(){
+    return{
+      resource_url:null,
+      singular:"item",
+      item:{}
+    }
+  },
+  mounted(){
+    this.load(this.$route.params.id);
+  },
 
- 	methods:{
- 		load(id){
-          this.$root.$emit("SHOW_PRELOADER");
-          this.provider.get({id:id}).then(response=>{
-              this.$root.$emit("HIDE_PRELOADER");
-              this.item=response.body;    
-          },response=>{
-              this.$router.push('/400');
-          });
+  methods:{
+    load(id){
+          this.$root.showPreloader();
+          axios.get(this.resource_url+"/"+id).then(function(response){
+              this.$root.hidePreloader();
+              this.item=response.data;    
+          }.bind(this)).catch(function(response){
+              this.$router.push('/404');
+          }.bind(this));
       },
-      save(){
-          this.$root.$emit("SHOW_PRELOADER");
-          this.provider.update({id:this.item.id},this.item).then(response=>{
-              this.$root.$emit("HIDE_PRELOADER");
-              this.$root.$emit("ALERT","Ok!","The "+this.singular+" has been updated successfully","success",3);
-          });
-      },
-      validateForm(){
-          this.$validator.validateAll().then(result=>{
-              this.save();
-          }).catch(()=>null);
+      save() {
+          this.$root.showPreloader();
+          axios.put(this.resource_url+"/"+this.item.id, this.item).then(function(response){
+              this.$root.hidePreloader();
+              this.$root.alert.success("The  "+this.singular+" has been updated successfully");
+          }.bind(this));
       }
   }
 }

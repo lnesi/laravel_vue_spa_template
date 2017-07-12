@@ -1,5 +1,5 @@
 <template>
-	<div>
+  <div>
       <div class="container">
           <div class="row">
               <div class="col-md-12 ">
@@ -53,72 +53,19 @@
 </template>
 <script>
 var list_mix = require('../mixins/list.js').default;
+var delete_mix = require('../mixins/delete.js').default;
+var activation_mix = require('../mixins/activation.js').default;
 export default {
-    mixins: [list_mix],
-   
-    data: function() {
-        return {
-            validator: null
-        }
-    },
+    mixins: [list_mix, delete_mix, activation_mix],
+
     created: function() {
         this.resource_url = "ajax/admin/users";
-        this.singular = "User";
+        this.singular = "user";
         this.addObject = { name: "", email: "", partner_id: "", password: "" };
 
     },
     methods: {
-        toggleActive(id,method) {
-            this.$root.showPreloader();
-            axios.get('/ajax/admin/users/' + id + "/"+method).then(function(response) {
-                this.$root.hidePreloader();
-                this.$root.alert.success( "The User has been "+method+"d successfully");
-            }.bind(this)).catch(function (error){
-                this.$root.hidePreloader();
-                console.log(response);
-                this.$root.alert.error(response.data.msg);
-            }.bind(this));
-        },
-        delete(id) {
-            this.$root.showPreloader();
-
-            axios.delete("ajax/admin/users/"+id).then(function(response){
-                this.$root.hidePreloader();
-                this.$root.alert.info("The " + this.singular + " has been deleted successfully");
-                this.load();
-            }.bind(this)).catch(function(response){
-                this.$root.hidePreloader();
-                console.log(response);
-                this.$root.alert.error(response.data.msg);
-            }.bind(this));
-        },
-        getStatus: function(value) {
-            if (value == 1) {
-                return "<span class='label label-success'>Active</span>";
-            } else {
-                return "<span class='label label-danger'>Inactive</span>";
-            }
-
-        },
-        trash(item) {
-             this.$root.confirm("Attention!", "Are you sure you want to delete the user: <strong>" + item.name + "</strong>?",function(){
-                this.delete(item.id);
-            }.bind(this));
-        },
-        activate(item) {
-            this.$root.confirm("Attention!", "Are you sure you want to activate the user: <strong>" + item.name + "</strong>?",function(){
-                this.toggleActive(item.id,"activate");
-                item.active=true;
-            }.bind(this));
-        },
-        deactivate(item) {
-            this.$root.confirm("Attention!", "Are you sure you want to deactivate the user: <strong>" + item.name + "</strong>?",function(){
-                this.toggleActive(item.id,"deactivate");
-                item.active=false;
-            }.bind(this));
-        },
-
-        reinvite(item){
+        reinvite(item) {
             this.$root.$emit("SHOW_PRELOADER");
             this.$http.get('/ajax/admin/users/' + item.id + "/resendinvite").then(response => {
                 this.$root.$emit("HIDE_PRELOADER");
@@ -126,7 +73,7 @@ export default {
             }, response => {
                 this.$root.$emit("HIDE_PRELOADER");
                 console.log(response);
-                this.$root.$emit("ALERT", response.status+" Error!", response.body.message, "danger");
+                this.$root.$emit("ALERT", response.status + " Error!", response.body.message, "danger");
             });
         }
 
@@ -134,5 +81,4 @@ export default {
     }
 
 }
-
 </script>
