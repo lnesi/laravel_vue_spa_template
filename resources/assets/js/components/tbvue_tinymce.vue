@@ -1,9 +1,9 @@
 <template>
-	<div :class="{'form-group': true, 'has-error': hasErrors }">
-		<label :for="id" class="control-label"><slot></slot></label>
-		<textarea type="text" class="form-control custom" :name="name" :id="id"></textarea>
-		<p class="help-block">{{ errorsBag.first(this.name) }}</p>
-	</div>
+    <div :class="{'form-group': true, 'has-error': hasErrors }">
+        <label :for="id" class="control-label"><slot></slot></label>
+        <textarea type="text" class="form-control custom" :name="name" :id="id"></textarea>
+        <p class="help-block">{{ errorsBag.first(this.name) }}</p>
+    </div>
 </template>
 <script>
 export default {
@@ -20,13 +20,13 @@ export default {
         this.validator.attach(this.name, this.rules, { prettyName: this.$slots.default[0].text });
     },
     mounted() {
-
+        var skin_url=this.$root.base_url+"/skin";
         if (this.value) this.valueModel = this.value;
         this.editor = new tinymce.Editor(this.id, {
             menubar: 'edit insert view format',
             plugins: ["link", "table", "wordcount", "code"],
             toolbar: "bold italic | alignleft aligncenter alignright | blockquote | link unlink  | bullist numlist outdent indent | table  | code",
-            skin_url: '/skin',
+            skin_url: skin_url,
             forced_root_block: "",
             force_p_newlines: false,
             height: 300
@@ -41,8 +41,8 @@ export default {
             return this.editor.getContent();
         },
         validate(){
-        	this.valueModel=this.editor.getContent();
-        	this.$emit('input', this.valueModel);
+            this.valueModel=this.editor.getContent();
+            this.$emit('input', this.valueModel);
             console.log("VALIDATING TINYMCE");
             this.validator.validate(this.name, this.valueModel).then(() => {
                

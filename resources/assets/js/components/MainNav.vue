@@ -53,24 +53,23 @@
 </template>
 
 <script>
-    export default {
-        
-        computed: {
-           user(){
-                return this.$root.user;
-           },
+export default {
 
+    computed: {
+        user() {
+            return this.$root.user;
         },
-        methods:{
-            logout(){
-                axios.post("/logout").then(function (response) {
-                    console.log("ahi vamos",response);
-                    window.location.href="/";
 
-                }.bind(this));
-            }
+    },
+    methods: {
+        logout() {
+            axios.post("logout").then(function(response) {
+                window.location.href = this.$root.base_url;
 
-
+            }.bind(this));
         }
+
+
     }
+ }
 </script>

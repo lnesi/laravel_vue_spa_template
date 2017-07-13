@@ -10,6 +10,9 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
+    <meta name="basefolder" content="{{ config('app.basefolder') }}">
+    <meta name="baseurl" content="{{ url('/')}}">
+
     <!-- Styles -->
     <script src="https://use.fontawesome.com/305feb8e9e.js"></script>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">

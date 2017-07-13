@@ -92,13 +92,30 @@ const app = new Vue({
     data() {
         return {
             user: { id: null, name: null },
-            is_logged: false
+            is_logged: false,
+            base_folder:null,
+            base_url:null
         }
     },
     created: function() {
+        this.base_folder=document.getElementsByName("basefolder")[0].getAttribute("content");
+        this.base_url=document.getElementsByName("baseurl")[0].getAttribute("content");
+        
         $(window).resize(function() {
             this.resize();
         }.bind(this));
+
+        // axios.interceptors.request.use(function (config) {
+        //      // Do something before request is sent
+        //      config.url=this.base_url+"/"+config.url;
+        //      console.log("BEFORE REQUEST",config.url);
+        //     return config;
+        // }.bind(this), function (error) {
+        //     // Do something with request error
+        //     return Promise.reject(error);
+        // });
+
+        
         axios.interceptors.response.use(null,function (error) {
             // Do something with response error
             this.hidePreloader();
