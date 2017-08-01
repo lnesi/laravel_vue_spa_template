@@ -26,7 +26,7 @@ class CreateUsersTable extends Migration
         });
 
         Schema::table('users',function(Blueprint $table){
-            $sql="INSERT INTO users(name,email,password,is_admin,active) VALUES('System Administrator','admin@two-uk.com','".Hash::make("123456")."',1,1)";
+            $sql="INSERT INTO users(name,email,password,is_admin,active) VALUES('System Administrator','admin@example.com','".Hash::make("123456")."',1,1)";
             DB::connection()->getPdo()->exec($sql);
             $sql="CREATE TRIGGER `bd_users` BEFORE DELETE ON `users` FOR EACH ROW
                     BEGIN

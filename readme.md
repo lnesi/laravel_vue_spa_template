@@ -1,3 +1,55 @@
+
+# Laravel / Vue.js / Single Page Application Template
+
+<strong>by:</strong> <a href="https://lnesi.github.io/">Luis Nesi</a> - <a href="https://twitter.com/lnesi">@lnesi</a>
+
+Single Page Application template in Angular 2 with Angular Material.
+
+## Fetures.
+- Laravel Simple Auth
+- User Invites 
+- User System Extended with activations
+- Bootstrap Front End.
+
+## Requirements:
+- MySQL
+- PHP 
+- Composer
+- npm
+
+## Installation
+1.  Download or clone in your Machine
+```
+composer install
+```
+2. Create .env and DB details
+3. Generate Key
+```
+php artisan key:generate
+```
+4. Migrate: 
+Open The file 2014_10_12_000000_create_users_table in database/migrations and add the credentials desire for admin user.
+```
+php artisan migrate
+```
+5. Install Front End Packages
+```
+npm install
+```
+6. Serve
+ ```
+php artisan serve
+```
+7. Open browser http://127.0.0.1:8000
+
+## Build and develop
+```
+npm run dev
+ ```
+
+
+### About Laravel
+
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
 <p align="center">
@@ -7,7 +59,6 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
 </p>
 
-## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:
 
@@ -21,30 +72,6 @@ Laravel is a web application framework with expressive, elegant syntax. We belie
 
 Laravel is accessible, yet powerful, providing tools needed for large, robust applications. A superb combination of simplicity, elegance, and innovation give you tools you need to build any application with which you are tasked.
 
-## Learning Laravel
-
-Laravel has the most extensive and thorough documentation and video tutorial library of any modern web application framework. The [Laravel documentation](https://laravel.com/docs) is thorough, complete, and makes it a breeze to get started learning the framework.
-
-If you're not in the mood to read, [Laracasts](https://laracasts.com) contains over 900 video tutorials on a range of topics including Laravel, modern PHP, unit testing, JavaScript, and more. Boost the skill level of yourself and your entire team by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for helping fund on-going Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](http://patreon.com/taylorotwell):
-
-- **[Vehikl](http://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Styde](https://styde.net)**
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
 
 ## License
 
